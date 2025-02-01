@@ -15,13 +15,11 @@ router.get("/", (_, res) => {
 
 router.post("/update-stock", (req, res) => {
     const { productId, action } = req.body;
-
-    // Determine the increment or decrement logic
     let sql = "";
     if (action === "increase") {
         sql = `UPDATE Product SET Units_instock = Units_instock + 1 WHERE Product_id = ?`;
     } else if (action === "decrease") {
-        sql = `UPDATE Product SET Units_instock = Units_instock - 1 WHERE Product_id = ? AND Units_instock > 0`;
+        sql = `UPDATE Product SET Units_instock = Units_instock - 1 WHERE Product_id = ? `;
     } else {
         return res.status(400).json({ success: false, message: "Invalid action" });
     }
@@ -68,8 +66,11 @@ router.post("/add", (req, res) => {
     });
 });
 
-router.delete('/delete',async(req,res)=>{
-    const {productId} = req.body;
+router.delete('/delete/:id',async(req,res)=>{
+    const productId = req.params.id;
+    if (!productId || isNaN(productId)) {
+        return res.status(400).json({ success: false, message: "Invalid Product ID" });
+    }
     const sql = `DELETE FROM Product WHERE Product_id = ?`;
     connectDB.query(sql,[productId],(err,result)=>{
         if(err){

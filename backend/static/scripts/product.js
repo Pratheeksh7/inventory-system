@@ -1,6 +1,6 @@
 window.onload = async () => {
     await loadProducts(); 
-    document.getElementById("add-product-form").addEventListener("submit", async  (event)=> {
+    document.getElementById("add-product-form").addEventListener("submit", async  function (event) {
         event.preventDefault();
         const productID = document.getElementById('product-id').value;
         const productName = document.getElementById("product-name").value;
@@ -27,8 +27,8 @@ window.onload = async () => {
             const result = await response.json();
             if (result.success) {
                 alert("Product added successfully!");
-                addProductToTable(result.newProduct); // Add to table dynamically
-                this.reset(); // Reset form after adding product
+                addProductToTable(result.newProduct); 
+                this.reset(); 
             } else {
                 alert(result.message);
             }
@@ -104,10 +104,9 @@ async function updateStock(productId, action) {
 }
 async function deleteStock(productID) {
     try{
-        const response = await fetch("/products/delete",{
+        const response = await fetch(`/products/delete/${productID}`,{
             method:"DELETE",
-            headers:{"Content-Type":"application/json"},
-            body: JSON.stringify({productID})
+            headers:{"Content-Type":"application/json"}
         })
 
         const result = await response.json();
