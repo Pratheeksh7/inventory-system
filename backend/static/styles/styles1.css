@@ -1,0 +1,22 @@
+body{
+  background-color: wheat;
+}
+table{
+  width: 100%;
+  text-align: center;
+  border-collapse: separate;
+  border-spacing: 15px;
+}
+th,td{
+  padding: 10px;
+}
+#sales-btn{
+  border: none;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: darkgoldenrod;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 30px;
+  width: 100px;
+  font-size: 15px;
+}
