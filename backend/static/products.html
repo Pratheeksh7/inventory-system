@@ -8,6 +8,16 @@
   </head>
   <body>
     <center><h2 >Products</h2></center>
+    <h2>Add New Product</h2>
+    <form id="add-product-form">
+        <input type="text" id="product-id" placeholder="Product ID" required autocomplete="off">
+        <input type="text" id="product-name" placeholder="Product Name" required autocomplete="off">
+        <input type="number" id="category-id" placeholder="Category ID" required autocomplete="off">
+        <input type="number" id="unit-price" placeholder="Unit Price" required autocomplete="off">
+        <input type="number" id="units-instock" placeholder="Units in Stock" required autocomplete="off">
+        <br><br>
+        <button type="submit">Add Product</button>
+    </form>
     <table id="product-table">
       <thead>
         <tr>
