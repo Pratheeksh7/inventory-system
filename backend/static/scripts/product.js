@@ -8,7 +8,6 @@ window.onload = async () => {
         const unitPrice = document.getElementById("unit-price").value;
         const unitsInStock = document.getElementById("units-instock").value;
 
-        // Create a new product object
         const newProduct = {
             Product_id :productID,
             Product_Name: productName,
@@ -38,7 +37,6 @@ window.onload = async () => {
         }
     });
 
-    // Event delegation for increment and decrement buttons
     document.getElementById("product-list").addEventListener("click", async (event) => {
         if (event.target.classList.contains("increment")) {
             const productId = event.target.getAttribute("data-id");
@@ -57,7 +55,6 @@ window.onload = async () => {
     });
 };
 
-// Function to load products from backend
 async function loadProducts() {
     try {
         const response = await fetch("/products");
@@ -81,7 +78,6 @@ async function loadProducts() {
     }
 }
 
-// Function to update stock
 async function updateStock(productId, action) {
     try {
         const response = await fetch(`/products/update-stock`, {
@@ -92,7 +88,6 @@ async function updateStock(productId, action) {
 
         const result = await response.json();
         if (result.success) {
-            // Update the UI dynamically
             document.getElementById(`stock-${productId}`).textContent = result.newStock;
         } else {
             alert(result.message);
@@ -148,7 +143,6 @@ function addProductToTable(product) {
     productContainer.appendChild(productRow);
 }
 
-// Function to navigate to sales page
 function loadSales() {
     window.location.href = "sales.html";
 }

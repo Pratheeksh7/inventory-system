@@ -11,6 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
+
 app.use('/login',loginRoutes);
 app.use('/products',productRoutes);
 app.use('/sales',saleRoutes);
@@ -31,11 +32,5 @@ app.listen(3000,()=>{
 });
 
 
-/*connectDB.query("SELECT * FROM Product", (err, results) => {
-  if (err) {
-      console.error("Error fetching products: ", err);
-    
-  }
-  console.log(results);
-});*/
+
 

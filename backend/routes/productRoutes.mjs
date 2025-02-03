@@ -30,7 +30,6 @@ router.post("/update-stock", (req, res) => {
             return res.status(500).json({ success: false, message: "Database error" });
         }
 
-        // Fetch updated stock value
         connectDB.query(`SELECT Units_instock FROM Product WHERE Product_id = ?`, [productId], (err, rows) => {
             if (err) {
                 console.error("Error fetching updated stock:", err);
@@ -55,7 +54,6 @@ router.post("/add", (req, res) => {
             return res.status(500).json({ success: false, message: "Database error" });
         }
 
-        // Fetch the newly inserted product with its generated Product_id
         connectDB.query(`SELECT * FROM Product WHERE Product_id = ?`, [Product_id], (err, rows) => {
             if (err) {
                 console.error("Error fetching new product:", err);

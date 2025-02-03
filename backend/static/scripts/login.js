@@ -1,4 +1,3 @@
-//for redirecting when login
 document.getElementById("login-btn").addEventListener("click", async function(event) {
   event.preventDefault();
 
@@ -13,7 +12,7 @@ try{
 
     const result = await response.json();
     if (result.success) {
-        window.location.href = "products.html"; // Redirect
+        window.location.href = "products.html"; 
     } else {
         alert("Invalid credentials!");
     }
