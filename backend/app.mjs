@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 app.use('/login',loginRoutes);
 app.use('/products',productRoutes);
 app.use('/sales',saleRoutes);
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 app.use(express.static(path.join(__dirname,"static")));
 app.get("*",(req,res)=>{

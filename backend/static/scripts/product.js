@@ -53,6 +53,37 @@ window.onload = async () => {
             await deleteStock(productId);
         }
     });
+
+    document.getElementById("edit-product-form").addEventListener("submit",async function(event){
+        event.preventDefault();
+        const productID = document.getElementById("edit-product-id").value;
+        const unitsInStock = document.getElementById("edit-units-instock").value;
+        try{
+            const response = await fetch(`/products/update`,{
+                method:"PUT",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify({productID,unitsInStock})
+            });
+            const result = await response.json();
+            if(result.success){
+                alert("Product updated succesfully")
+                const stockElement = document.getElementById(`stock-${productID}`);
+            if (stockElement) {
+                stockElement.textContent = unitsInStock;
+            } else {
+                console.error(`Element with id stock-${productID} not found`);
+            }
+            event.target.reset();  
+            }else{
+                alert(result.message);
+            }
+        }catch(error){
+            console.error("Error updating product:", error);
+            alert("Failed to update product.");
+        }
+    });
 };
 
 async function loadProducts() {

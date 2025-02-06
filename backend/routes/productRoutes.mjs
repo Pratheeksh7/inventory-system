@@ -79,4 +79,17 @@ router.delete('/delete/:id',async(req,res)=>{
     })
 });
 
+
+router.put('/update',async(req,res)=>{
+    const {productID,unitsInStock} = req.body;
+    const sql = `UPDATE PRODUCT SET Units_instock = ? WHERE PRODUCT_ID = ?
+    `;
+    connectDB.query(sql,[unitsInStock,productID],(err,result)=>{
+        if(err){
+            console.error("Database error:",err)
+            return res.status(500).json({success:false,message:"Database error"})
+        }
+        return res.json({success:true})
+    })
+})
 export default router;
